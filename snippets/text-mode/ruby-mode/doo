@@ -1,0 +1,6 @@
+#name : do |obj| ... end
+#group : general
+# --
+do |${obj}|
+  $0
+end
