@@ -94,10 +94,13 @@
 ;                              (setq css-indent-level 2)
 ;                              (setq css-indent-offset 2))))
 ;
-;(defun yasnippet-bundle-hook ()
-;  (setq yas/root-directory "~/.emacs.d/snippets")
-;  (yas/load-directory yas/root-directory))
-;
+
+(add-to-list 'load-path
+             "~/.emacs.d/vendor/yasnippet-0.6.1c")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")
+
 ;(add-hook 'emacs-lisp-mode-hook '(lambda ()
 ;                              (set-newline-and-indent)))
 ;
