@@ -4,7 +4,7 @@ Packages I want to install
 * ruby-mode - DONE
 * inf-ruby - DONE
 * ruby-compilation - DONE
-* rhtml-mode
+* rhtml-mode - DONE
 * cucumber-mode (feature-mode)
 * yaml-mode
 * css-mode
@@ -16,3 +16,4 @@ Packages I want to install
 * gist
 * peepopen
 * ack
+* rinari?

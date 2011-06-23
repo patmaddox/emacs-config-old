@@ -71,13 +71,12 @@
              (require 'inf-ruby)
              (require 'ruby-compilation)))
 
-;(defun rhtml-mode-hook ()
-;  (autoload 'rhtml-mode "rhtml-mode" nil t)
-;  (add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
-;  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . rhtml-mode))
-;  (add-to-list 'auto-mode-alist '("\\.rjs\\'" . rhtml-mode))
-;  (add-hook 'rhtml-mode '(lambda ()
-;                           (define-key rhtml-mode-map (kbd "M-s") 'save-buffer))))
+; rhtml goodness
+(add-to-list 'load-path "~/.emacs.d/vendor/rhtml")
+(autoload 'rhtml-mode "rhtml-mode" "Mode for editing rhtml / html.erb source files" t)
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . rhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.rjs\\'" . rhtml-mode))
 ;
 ;(defun cucumber-mode-hook ()
 ;  (autoload 'feature-mode "feature-mode" nil t)
@@ -100,6 +99,7 @@
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")
+(yas/load-directory "~/.emacs.d/custom-snippets")
 
 ;(add-hook 'emacs-lisp-mode-hook '(lambda ()
 ;                              (set-newline-and-indent)))
