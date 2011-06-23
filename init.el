@@ -77,15 +77,18 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
 (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . rhtml-mode))
 (add-to-list 'auto-mode-alist '("\\.rjs\\'" . rhtml-mode))
-;
+
+
+; YAML
+(autoload 'yaml-mode "yaml-mode" "Mode for editing YAML source files" t)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+
+
 ;(defun cucumber-mode-hook ()
 ;  (autoload 'feature-mode "feature-mode" nil t)
 ;  (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode)))
 ;
-;(defun yaml-mode-hook ()
-;  (autoload 'yaml-mode "yaml-mode" nil t)
-;  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-;  (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode)))
 ;
 ;(defun css-mode-hook ()
 ;  (autoload 'css-mode "css-mode" nil t)
