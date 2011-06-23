@@ -1,1 +1,18 @@
 This is my emacs config
+
+Packages I want to install
+* ruby-mode - DONE
+* inf-ruby - DONE
+* ruby-compilation - DONE
+* rhtml-mode
+* cucumber-mode (feature-mode)
+* yaml-mode
+* css-mode
+* yasnippet-bundle
+* textmate-mode
+* rvm
+* magit
+* cheat
+* gist
+* peepopen
+* ack

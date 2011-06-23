@@ -41,132 +41,134 @@
 
 ;;;;;
 
-(require 'package)
-(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
-(package-initialize)
-
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(require 'el-get)
-
+;(require 'package)
+;(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
+;(package-initialize)
+;
+;(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;(require 'el-get)
+;
 (defun set-newline-and-indent ()
   (local-set-key (kbd "RET") 'newline-and-indent))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(defun ruby-mode-hook ()
-  (autoload 'ruby-mode "ruby-mode" nil t)
-  (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
-  (add-hook 'ruby-mode-hook '(lambda ()
-                               (setq ruby-deep-arglist t)
-                               (setq ruby-deep-indent-paren nil)
-                               (setq c-tab-always-indent nil)
-                               (set-newline-and-indent)
-;                               (add-hook 'before-save-hook 'delete-trailing-whitespace)
-                               (require 'inf-ruby)
-                               (require 'ruby-compilation))))
-(defun rhtml-mode-hook ()
-  (autoload 'rhtml-mode "rhtml-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
-  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . rhtml-mode))
-  (add-to-list 'auto-mode-alist '("\\.rjs\\'" . rhtml-mode))
-  (add-hook 'rhtml-mode '(lambda ()
-                           (define-key rhtml-mode-map (kbd "M-s") 'save-buffer))))
 
-(defun cucumber-mode-hook ()
-  (autoload 'feature-mode "feature-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode)))
+; awesome ruby stuff
+(autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (setq ruby-deep-arglist t)
+             (setq ruby-deep-indent-paren nil)
+             (setq c-tab-always-indent nil)
+             (set-newline-and-indent)
+             (require 'inf-ruby)
+             (require 'ruby-compilation)))
 
-(defun yaml-mode-hook ()
-  (autoload 'yaml-mode "yaml-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-  (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode)))
-
-(defun css-mode-hook ()
-  (autoload 'css-mode "css-mode" nil t)
-  (add-hook 'css-mode-hook '(lambda ()
-                              (setq css-indent-level 2)
-                              (setq css-indent-offset 2))))
-
-(defun yasnippet-bundle-hook ()
-  (setq yas/root-directory "~/.emacs.d/snippets")
-  (yas/load-directory yas/root-directory))
-
-(add-hook 'emacs-lisp-mode-hook '(lambda ()
-                              (set-newline-and-indent)))
-
-
-(setq el-get-sources
-      '((:name ruby-mode
-               :type elpa
-               :load "ruby-mode.el"
-               :after (lambda () (ruby-mode-hook)))
-        (:name inf-ruby  :type elpa)
-        (:name ruby-compilation :type elpa)
-        (:name yasnippet-bundle
-               :type elpa
-               :after (lambda () (yasnippet-bundle-hook)))
-        (:name css-mode
-               :type elpa
-               :load "css-mode.el"
-               :after (lambda () (css-mode-hook)))
-        (:name textmate
-               :type git
-               :url "git://github.com/defunkt/textmate.el"
-               :load "textmate.el")
-        (:name feature-mode
-               :type git
-               :url "git://github.com/michaelklishin/cucumber.el.git"
-               :features feature-mode
-               :after (lambda() (cucumber-mode-hook)))
-        (:name rvm
-               :type git
-               :url "http://github.com/djwhitt/rvm.el.git"
-               :load "rvm.el"
-               :compile ("rvm.el")
-               :after (lambda() (rvm-use-default)))
-        (:name rhtml
-               :type git
-               :url "https://github.com/eschulte/rhtml.git"
-               :features rhtml-mode
-               :after (lambda () (rhtml-mode-hook)))
-        (:name yaml-mode
-               :type git
-               :url "http://github.com/yoshiki/yaml-mode.git"
-               :features yaml-mode
-               :after (lambda () (yaml-mode-hook)))
-        (:name magit
-               :type git
-               :url "https://github.com/philjackson/magit.git"
-               :features magit)
-        (:name cheat
-               :type git
-               :url "https://github.com/defunkt/cheat.el.git"
-               :load "cheat.el")
-        (:name gist
-               :type git
-               :url "https://github.com/defunkt/gist.el.git"
-               :load "gist.el")))
-(el-get 'sync)
+;(defun rhtml-mode-hook ()
+;  (autoload 'rhtml-mode "rhtml-mode" nil t)
+;  (add-to-list 'auto-mode-alist '("\\.erb\\'" . rhtml-mode))
+;  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . rhtml-mode))
+;  (add-to-list 'auto-mode-alist '("\\.rjs\\'" . rhtml-mode))
+;  (add-hook 'rhtml-mode '(lambda ()
+;                           (define-key rhtml-mode-map (kbd "M-s") 'save-buffer))))
+;
+;(defun cucumber-mode-hook ()
+;  (autoload 'feature-mode "feature-mode" nil t)
+;  (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode)))
+;
+;(defun yaml-mode-hook ()
+;  (autoload 'yaml-mode "yaml-mode" nil t)
+;  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+;  (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode)))
+;
+;(defun css-mode-hook ()
+;  (autoload 'css-mode "css-mode" nil t)
+;  (add-hook 'css-mode-hook '(lambda ()
+;                              (setq css-indent-level 2)
+;                              (setq css-indent-offset 2))))
+;
+;(defun yasnippet-bundle-hook ()
+;  (setq yas/root-directory "~/.emacs.d/snippets")
+;  (yas/load-directory yas/root-directory))
+;
+;(add-hook 'emacs-lisp-mode-hook '(lambda ()
+;                              (set-newline-and-indent)))
+;
+;
+;(setq el-get-sources
+;      '((:name ruby-mode
+;               :type elpa
+;               :load "ruby-mode.el"
+;               :after (lambda () (ruby-mode-hook)))
+;        (:name inf-ruby  :type elpa)
+;        (:name ruby-compilation :type elpa)
+;        (:name yasnippet-bundle
+;               :type elpa
+;               :after (lambda () (yasnippet-bundle-hook)))
+;        (:name css-mode
+;               :type elpa
+;               :load "css-mode.el"
+;               :after (lambda () (css-mode-hook)))
+;        (:name textmate
+;               :type git
+;               :url "git://github.com/defunkt/textmate.el"
+;               :load "textmate.el")
+;        (:name feature-mode
+;               :type git
+;               :url "git://github.com/michaelklishin/cucumber.el.git"
+;               :features feature-mode
+;               :after (lambda() (cucumber-mode-hook)))
+;        (:name rvm
+;               :type git
+;               :url "http://github.com/djwhitt/rvm.el.git"
+;               :load "rvm.el"
+;               :compile ("rvm.el")
+;               :after (lambda() (rvm-use-default)))
+;        (:name rhtml
+;               :type git
+;               :url "https://github.com/eschulte/rhtml.git"
+;               :features rhtml-mode
+;               :after (lambda () (rhtml-mode-hook)))
+;        (:name yaml-mode
+;               :type git
+;               :url "http://github.com/yoshiki/yaml-mode.git"
+;               :features yaml-mode
+;               :after (lambda () (yaml-mode-hook)))
+;        (:name magit
+;               :type git
+;               :url "https://github.com/philjackson/magit.git"
+;               :features magit)
+;        (:name cheat
+;               :type git
+;               :url "https://github.com/defunkt/cheat.el.git"
+;               :load "cheat.el")
+;        (:name gist
+;               :type git
+;               :url "https://github.com/defunkt/gist.el.git"
+;               :load "gist.el")))
+;(el-get 'sync)
 
 (defun is-rails-project ()
   (when (textmate-project-root)
     (file-exists-p (expand-file-name "config/environment.rb" (textmate-project-root)))))
 
 ;; peepopen command+t
-(require 'peepopen)
-(setq ns-pop-up-frames nil)
-(textmate-mode)
+;(require 'peepopen)
+;(setq ns-pop-up-frames nil)
+;(textmate-mode)
 
 ; ack!
-(autoload 'ack-same "full-ack" nil t)
-(autoload 'ack "full-ack" nil t)
-(autoload 'ack-find-same-file "full-ack" nil t)
-(autoload 'ack-find-file "full-ack" nil t)
+;(autoload 'ack-same "full-ack" nil t)
+;(autoload 'ack "full-ack" nil t)
+;(autoload 'ack-find-same-file "full-ack" nil t)
+;(autoload 'ack-find-file "full-ack" nil t)
 
 
 (require 'ido)
