@@ -84,18 +84,21 @@
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
+; CSS
+(autoload 'css-mode "css-mode" "Mode for editing CSS source files" t)
+(add-hook 'css-mode-hook '(lambda ()
+                            (setq css-indent-level 2)
+                            (setq css-indent-offset 2)))
+(add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
+
+
 
 ;(defun cucumber-mode-hook ()
 ;  (autoload 'feature-mode "feature-mode" nil t)
 ;  (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode)))
 ;
 ;
-;(defun css-mode-hook ()
-;  (autoload 'css-mode "css-mode" nil t)
-;  (add-hook 'css-mode-hook '(lambda ()
-;                              (setq css-indent-level 2)
-;                              (setq css-indent-offset 2))))
-;
+
 
 (add-to-list 'load-path
              "~/.emacs.d/vendor/yasnippet-0.6.1c")
