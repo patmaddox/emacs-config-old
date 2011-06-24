@@ -109,6 +109,9 @@
 (yas/load-directory "~/.emacs.d/vendor/yasnippet-0.6.1c/snippets")
 (yas/load-directory "~/.emacs.d/custom-snippets")
 
+(add-to-list 'load-path "~/.emacs.d/vendor/magit")
+(require 'magit)
+
 ;(add-hook 'emacs-lisp-mode-hook '(lambda ()
 ;                              (set-newline-and-indent)))
 ;

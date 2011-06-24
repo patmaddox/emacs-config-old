@@ -1,0 +1,3 @@
+magit:
+  repo: https://github.com/magit/magit.git
+  path: vendor
