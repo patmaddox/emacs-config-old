@@ -40,20 +40,10 @@
 ;the mode-line."
 ;  t)
 
-;;;;;
-
-;(require 'package)
-;(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
-;(package-initialize)
-;
-;(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-;(require 'el-get)
-;
 (defun set-newline-and-indent ()
   (local-set-key (kbd "RET") 'newline-and-indent))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 
 ; awesome ruby stuff
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
@@ -85,10 +75,14 @@
 (autoload 'yaml-mode "yaml-mode" "Mode for editing YAML source files" t)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+(add-hook 'yaml-mode-hook
+          '(lambda ()
+             (set-newline-and-indent)))
 
 ; CSS
 (autoload 'css-mode "css-mode" "Mode for editing CSS source files" t)
 (add-hook 'css-mode-hook '(lambda ()
+                            (set-newline-and-indent)
                             (setq css-indent-level 2)
                             (setq css-indent-offset 2)))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
@@ -123,62 +117,9 @@
 (require 'cheat)
 (require 'gist)
 
-;(add-hook 'emacs-lisp-mode-hook '(lambda ()
-;                              (set-newline-and-indent)))
-;
-;
-;(setq el-get-sources
-;      '((:name ruby-mode
-;               :type elpa
-;               :load "ruby-mode.el"
-;               :after (lambda () (ruby-mode-hook)))
-;        (:name inf-ruby  :type elpa)
-;        (:name ruby-compilation :type elpa)
-;        (:name yasnippet-bundle
-;               :type elpa
-;               :after (lambda () (yasnippet-bundle-hook)))
-;        (:name css-mode
-;               :type elpa
-;               :load "css-mode.el"
-;               :after (lambda () (css-mode-hook)))
-;        (:name textmate
-;               :type git
-;               :url "git://github.com/defunkt/textmate.el"
-;               :load "textmate.el")
-;        (:name feature-mode
-;               :type git
-;               :url "git://github.com/michaelklishin/cucumber.el.git"
-;               :features feature-mode
-;               :after (lambda() (cucumber-mode-hook)))
-;        (:name rvm
-;               :type git
-;               :url "http://github.com/djwhitt/rvm.el.git"
-;               :load "rvm.el"
-;               :compile ("rvm.el")
-;               :after (lambda() (rvm-use-default)))
-;        (:name rhtml
-;               :type git
-;               :url "https://github.com/eschulte/rhtml.git"
-;               :features rhtml-mode
-;               :after (lambda () (rhtml-mode-hook)))
-;        (:name yaml-mode
-;               :type git
-;               :url "http://github.com/yoshiki/yaml-mode.git"
-;               :features yaml-mode
-;               :after (lambda () (yaml-mode-hook)))
-;        (:name magit
-;               :type git
-;               :url "https://github.com/philjackson/magit.git"
-;               :features magit)
-;        (:name cheat
-;               :type git
-;               :url "https://github.com/defunkt/cheat.el.git"
-;               :load "cheat.el")
-;        (:name gist
-;               :type git
-;               :url "https://github.com/defunkt/gist.el.git"
-;               :load "gist.el")))
-;(el-get 'sync)
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (set-newline-and-indent)))
 
 (defun is-rails-project ()
   (when (textmate-project-root)
@@ -203,14 +144,6 @@
 (global-set-key (kbd "M-T") 'transpose-words)
 
 (server-start)
-
-;; packages still to install:
-;    yasnippet
-;    markdown-mode
-;    autotest ?
-;    ack
-;    ecb
-;    window-numbering-mode
 
 ;; TODO - ideas for functions that I want to write but don't know how yet
 ; kill-whole-word : should look up previous character for word boundary (\b)
