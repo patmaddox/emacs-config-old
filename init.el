@@ -112,6 +112,8 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/magit")
 (require 'magit)
 
+(require 'cheat)
+
 ;(add-hook 'emacs-lisp-mode-hook '(lambda ()
 ;                              (set-newline-and-indent)))
 ;
