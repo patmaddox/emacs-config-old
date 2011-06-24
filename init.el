@@ -113,6 +113,7 @@
 (require 'magit)
 
 (require 'cheat)
+(require 'gist)
 
 ;(add-hook 'emacs-lisp-mode-hook '(lambda ()
 ;                              (set-newline-and-indent)))
