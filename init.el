@@ -112,6 +112,10 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/magit")
 (require 'magit)
 
+(add-to-list 'load-path "~/.emacs.d/vendor/textmate")
+(require 'textmate)
+(textmate-mode)
+
 (require 'cheat)
 (require 'gist)
 
@@ -179,7 +183,6 @@
 ;; peepopen command+t
 ;(require 'peepopen)
 ;(setq ns-pop-up-frames nil)
-;(textmate-mode)
 
 ; ack!
 ;(autoload 'ack-same "full-ack" nil t)

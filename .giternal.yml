@@ -1,3 +1,6 @@
 magit:
   repo: https://github.com/magit/magit.git
   path: vendor
+textmate:
+  repo: https://github.com/defunkt/textmate.el.git
+  path: vendor

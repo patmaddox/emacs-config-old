@@ -2,3 +2,5 @@ tramp
 url/cookies
 *.elc
 vendor/magit
+
+vendor/textmate
